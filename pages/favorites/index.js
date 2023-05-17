@@ -1,11 +1,8 @@
 import ArtPieces from "../../components/ArtPieces";
+import useStore from "@/store/artPieceInfoStore";
 
-export default function FavoritesPage({
-  pieces,
-  artPiecesInfo,
-  onArtPiecesInfo,
-  onToggleFavorite,
-}) {
+export default function FavoritesPage({ pieces }) {
+  const artPiecesInfo = useStore((state) => state.artPiecesInfo);
   const favorites = pieces.filter((piece) =>
     artPiecesInfo.find(
       (artPiece) => artPiece.slug === piece.slug && artPiece.isFavorite
@@ -15,9 +12,6 @@ export default function FavoritesPage({
   return (
     <ArtPieces
       pieces={favorites}
-      onArtPiecesInfo={onArtPiecesInfo}
-      artPiecesInfo={artPiecesInfo}
-      onToggleFavorite={onToggleFavorite}
     />
   );
 }

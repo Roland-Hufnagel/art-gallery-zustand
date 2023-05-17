@@ -24,6 +24,7 @@ export default function Spotlight({
     <Wrapper>
       <ImageContainer>
         <FavoriteButton
+        
           isFavorite={isFavorite}
           onToggleFavorite={onToggleFavorite}
           positionAbsolute={true}

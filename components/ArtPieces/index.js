@@ -1,5 +1,6 @@
 import ArtPiecePreview from "../ArtPiecePreview";
 import styled from "styled-components";
+import useStore from "@/store/artPieceInfoStore";
 
 const List = styled.ul`
   list-style: none;
@@ -17,7 +18,9 @@ const List = styled.ul`
   }
 `;
 
-export default function ArtPieces({ pieces, artPiecesInfo, onToggleFavorite }) {
+export default function ArtPieces({ pieces }) {
+  const artPiecesInfo = useStore((state) => state.artPiecesInfo);
+  const toggleFavorite = useStore((state) => state.toggleFavorite);
   return (
     <List>
       {pieces?.map((piece) => (
@@ -31,7 +34,7 @@ export default function ArtPieces({ pieces, artPiecesInfo, onToggleFavorite }) {
               artPiecesInfo?.find((artPiece) => artPiece.slug === piece.slug)
                 ?.isFavorite
             }
-            onToggleFavorite={() => onToggleFavorite(piece.slug)}
+            onToggleFavorite={() => toggleFavorite(piece.slug)}
           />
         </li>
       ))}
